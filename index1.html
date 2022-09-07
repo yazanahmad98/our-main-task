@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+
+  <!-- <link rel="stylesheet" href="fonts/icomoon/style.css"> -->
+
+  <!-- <link rel="stylesheet" href="css/owl.carousel.min.css"> -->
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="bootstrap.min.css">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="style.css">
+
+  <title>Students Info</title>
+  <script src="https://unpkg.com/read-excel-file@4.x/bundle/read-excel-file.min.js"></script>
+  <script src="table2excel.js"></script>
+</head>
+
+<body>
+   <p class="count">Remaining time:</p>
+  <p class="count" id="CountDown"> </p>
+
+
+  <script>
+  const startingMinutes = 10;
+  let time = startingMinutes * 60 ;
+
+  const CountDownEl = document.getElementById('CountDown');
+
+  setInterval(updateCountDown,1000);
+
+  function updateCountDown(){
+    const minutes = Math.floor(time / 60);
+    let minutes1 = minutes ;
+    let seconds = time % 60;
+    seconds = seconds < 10 ? '0'+seconds:seconds;
+    minutes1 = minutes1 < 10 ? '0'+minutes1:minutes1;
+    CountDownEl.innerHTML= `${minutes1}: ${seconds}`;
+    time--;
+
+
+  }
+  </script>
+ 
+  <script>
+     $(document).ready(function($)
+  {
+    //--->add row at the end > start
+    $(document).on('click',".btn_row_add_below_end", function(e)
+    {
+      var tableBody = $(document).find('.tbl_code_with_mark').find("tbody");
+      var trLast = tableBody.find("tr:last");
+      var trNew = trLast.clone();
+      trLast.after(trNew);
+    });
+    //--->add row at the end > end
+
+
+    //--->current row > new > start
+    $(document).on('click',".btn_row_below_new", function(e)
+    {
+      var r = $(this).closest('tr').clone();
+
+      $.each(r.find('td'), function(i1,v1)
+      {
+        //clear all data/value in td/cell
+        $(this).html('');
+      });
+
+      $(this).closest('tr').after(r);
+    });
+    //--->current row > new > end
+
+
+    //--->current row > clone > start
+    $(document).on('click',".btn_row_below_clone", function(e)
+    {
+      var r = $(this).closest('tr').clone();
+      $(this).closest('tr').after(r);
+    });
+    //--->current row > clone > end
+
+    //--->current row > delete > start
+    $(document).on('click',".btn_row_delete", function(e)
+    {
+      var r = $(this).closest('tr').remove();
+    });
+    //--->current row > delete > end
+    
+  });
+
+  
+  
+       
+    
+  </script>
+
+
+  <div class="content">
+
+    <div class="container">
+      <h2 class="mb-5">ArtiKeys Students</h2>
+
+
+      <div class="table-responsive">
+
+        <table id="custom-table"  class="table table-striped custom-table">
+          
+          <thead>
+            
+            <tr>
+
+              <th scope="col">Order</th>
+              <th scope="col">Name</th>
+              <th scope="col">EDUCATION</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Collage</th>
+              <th scope="col">E-mail</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr scope="row">
+
+
+
+              <td>
+                01
+              </td>
+              <td contentEditable="true"><a >yazan abu al-samen</a></td>
+              <td contentEditable="true">
+                RPA Developer 
+                 <br><small  class="more">Artikeys</small>
+              </td>
+              <td contentEditable="true">+962 7 8073 1108</td>
+              <td contentEditable="true">Irbid National Unversity</td>
+              <td contentEditable="true">Yazansamen@yahoo.com</td>
+              <!-- <td><a href="#" class="more">Edit</a></td> -->
+              <td>
+          
+                <span  class ="btn btn-sm btn-danger btn_row_delete">Delete</span>
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td >02</td>
+              <td contentEditable="true"><a >Mohammad Jaradat</a></td>
+              <td contentEditable="true">
+                RPA Developer
+                <br> <small  class="more">Artikeys</small>
+              </td>
+              <td contentEditable="true">+962 7 8170 9232</td>
+              <td contentEditable="true">Al-Albeet</td>
+              <td contentEditable="true">mohmmed9687@gmail.com</td>
+              <!-- <td><a href="#" class="more">Edit</a></td> -->
+              <td>
+                <span  class ="btn btn-sm btn-danger btn_row_delete">Delete</span>
+              </td>
+            </tr>
+            <tr>
+
+              <td>03</td>
+              <td contentEditable="true"><a >Shrooq Jamal</a></td>
+              <td contentEditable="true">
+                RPA Developer
+                <br> <small  class="more">Artikeys</small>
+              </td>
+              <td contentEditable="true">+962 7 9981 0845</td>
+              <td contentEditable="true">Hashemite</td>
+              <td contentEditable="true">shrooq.j.98@gmail.com</td>
+              <!-- <td ><a href="#" class="more">Edit</a></td> -->
+              <td contentEditable="true">
+                <span  class ="btn btn-sm btn-danger btn_row_delete">Delete</span>
+              </td>
+            </tr>
+            <tr>
+
+              <td>04</td>
+              <td contentEditable="true"><a >Moneer Rashdan</a></td>
+              <td contentEditable="true">
+                RPA Developer
+                <br> <small  class="more">ArtiKeys</small>
+              </td>
+              <td contentEditable="true">+962 7 7794 0064</td>
+              <td contentEditable="true">ِAjloun</td>
+              <td contentEditable="true">ِAjloun</td>
+              <!-- <td><a href="#" class="more">Edit</a></td> -->
+              <td>
+                <span  class ="btn btn-sm btn-danger btn_row_delete">Delete</span>
+              </td>
+            </tr>
+
+            <tr>
+
+              <td>05</td>
+              <td contentEditable="true"><a >Talal AL-Khateeb</a></td>
+              <td contentEditable="true">
+                RPA Developer
+                <br> <small  class="more">ArtiKeys</small>
+              </td>
+              <td contentEditable="true">+962 7 9733 7623</td>
+              <td contentEditable="true">Jordanian Unversity</td>
+              <td contentEditable="true">alkhattabtalal@gmail.com</td>
+              <!-- <td><a href="#" class="more">Edit</a></td> -->
+              <td>
+                <span  class ="btn btn-sm btn-danger btn_row_delete">Delete</span>
+              </td>
+            </tr>
+            <tr>
+
+              <td>06</td>
+              <td contentEditable="true"><a >Sara Mathhar</a></td>
+              <td contentEditable="true">
+                RPA Developer
+                <br>  <small  class="more">ArtiKeys</small>
+              </td>
+              <td contentEditable="true">+962 7 9698 2476</td>
+              <td contentEditable="true">University of Science and Technology</td>
+              <td contentEditable="true">sara.a.mathhar@gmail.com</td>
+              <!-- <td><a href="#" class="more">Edit</a></td> -->
+              <td>
+                <span  class ="btn btn-sm btn-danger btn_row_delete">Delete</span>
+              </td>
+            </tr>
+            <tr>
+
+              <td>07</td>
+              <td contentEditable="true"><a  >Aya Al-Jemzawy</a></td>
+              <td contentEditable="true">
+                RPA Developer
+                <br> <small  class="more">ArtiKeys</small>
+              </td>
+              <td contentEditable="true">+962 7 8865 9787</td>
+              <td contentEditable="true">Al-Balqa University</td>
+              <td contentEditable="true">Ayamuneer04@gmail.com</td>
+              <!-- <td><a href="#" class="more">Edit</a></td> -->
+              <td>
+                <span  class ="btn btn-sm btn-danger btn_row_delete">Delete</span>
+              </td>
+            </tr>
+            <tr>
+
+              <td>08</td>
+              <td contentEditable="true"><a >Asal AL-shareef</a></td>
+              <td contentEditable="true">
+                RPA Developer
+                <br>  <small  class="more">ArtiKeys</small>
+              </td>
+              <td contentEditable="true">+962 7 7758 5891</td>
+              <td contentEditable="true">Jordanian Unversity</td>
+              <td contentEditable="true">Honey.alsharif@gmail.com</td>
+              <!-- <td><a href="#" class="more">Edit</a></td> -->
+              <td>
+                <span  class ="btn btn-sm btn-danger btn_row_delete">Delete</span>
+              </td>
+            </tr>
+            <tr>
+
+              <td>09</td>
+              <td contentEditable="true"><a >Islam Abd Ala'al</a></td>
+              <td contentEditable="true">
+                RPA Developer
+                <br>  <small  class="more">ArtiKeys</small>
+              </td>
+              <td contentEditable="true">+962 7 8596 3787</td>
+              <td contentEditable="true">Hashemite</td>
+              <td contentEditable="true">islam1421967@gmail.com</td>
+              <!-- <td><a href="#" class="more">Edit</a></td> -->
+              <td>
+                <span  class ="btn btn-sm btn-danger btn_row_delete">Delete</span>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+       
+        
+        
+        <div id="data">
+          <input type="number" id="order" placeholder=" Order ..." >
+          <input type="text" id="Sname" placeholder="Enter Student Name ...">
+          <input type="text" id="education" placeholder="      Eeducation ...">
+          <input type="number" id="contact" placeholder="     Enter Contact ...">
+          <input type="text" id="Collage" placeholder="      Enter Collage ...">
+          <input type="email" id="email" placeholder="       Enter E-mail ..." required="">
+          <button  id="btn" onclick="audio.play();">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Add</button>
+<!-- ----------------------------- -->
+            <!-- <div class="alert hide">
+              <span class="fas fa-exclamation-circle"></span>
+              <span class="msg">New Student Added successfully!</span>
+              <div class="close-btn">
+                 <span class="fas fa-times"></span>
+              </div>
+           </div>
+           <script>
+            $('button').click(function(){
+              $('.alert').addClass("show");
+              $('.alert').removeClass("hide");
+              $('.alert').addClass("showAlert");
+              setTimeout(function(){
+                $('.alert').removeClass("show");
+                $('.alert').addClass("hide");
+              },2000);
+            });
+            $('.close-btn').click(function(){
+              $('.alert').removeClass("show");
+              $('.alert').addClass("hide");
+            });
+         </script> -->
+<!-- ------------------------------------- -->
+
+            
+            
+          <script>
+            const audio = new Audio();
+	          audio.src="./ton.wav";
+          </script>
+      </div>
+      </div>
+
+      <button id="Download">Export as Excel</button>
+      <script>
+        document.getElementById('Download').addEventListener('click', function(){
+          var table2excel = new Table2Excel();
+          table2excel.export(document.querySelectorAll("#custom-table"));
+        });
+      </script>
+
+      <!-- <input type="file" id="input">
+      <script>
+        var input = document.getElementById('input');
+        input.addEventListener('change', function(){
+          readXlsxFile(input.files[0]).then(function(data){
+            var i = 0 ;
+            data.map((row,index) => {
+              if(i==0){
+                let table = document.getElementById('#custom-table');
+                generateTableHead(table, row);
+
+              }
+              if(i>0){
+                let table = document.getElementById('#custom-table');
+                generateTableRows(table, row);
+              }
+              i++;
+
+            });
+          });
+        });
+        function generateTableHead(table,data){
+          let thead = table.createTHead();
+          let row = thead.insertRow();
+          for(let key of data){
+            let th = document.createElement('th');
+            let text = docuemnt.createTextNode(key);
+            th.appendChild(text);
+            row.appendChild(th);
+          }
+        }
+
+        function generateTableRows(table,data){
+          let newrow = table.insertRow(-1);
+          data.map((row,index)=>{
+            let newCell = newRow.insertCell();
+            let newText = document.createTextNode(row);
+            newCell.appendChild(newText);
+
+          });
+        }
+
+
+      </script> -->
+
+
+    </div>
+
+  </div>
+
+
+
+  <script src="jquery-3.3.1.min.js"></script>
+  <!-- <script src="js/popper.min.js"></script> -->
+  <!-- <script src="js/bootstrap.min.js"></script> -->
+  <script src="main.js"></script>
+</body>
+
+</html>
